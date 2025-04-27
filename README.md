@@ -1,6 +1,15 @@
 # Carbon Majors EDA
 The goal of this analysis was to investigate the historical emissions data attributed to major global producers (from Carbon Majors).
 
+## Data Source
+Carbon Majors: https://carbonmajors.org/multipage/About-Carbon-Majors-416
+
+## Tools Used
+* **Dbeaver:** Utilized for initial data handling, including converting the source data from HTML format to CSV and performing necessary cleaning steps.
+* **Python:** Employed for the main Exploratory Data Analysis (EDA) of the emission dataset.
+  
+## Analysis & Visualizations
+
 ### The Big Picture: Historical Trend
 The data show an accelerating increase globally since the mid-20 century, reflecting increased fossil fuel production and use.
 
@@ -346,5 +355,5 @@ plt.show()
 ```
 ![15](https://github.com/user-attachments/assets/9dd0098b-d50d-4300-b75f-35830cadb0fc)
 
-# Conclusion:
-This analysis confirms historical emissions are concentrated among top oil, coal, and gas producers (including state-owned, investor-owned, and nation-state attributions). While the data mainly links climate impact to the end-use of these fuels (Scope 3), Natural Gas stands out: its direct operational footprint (Scope 1) is proportionally much larger than other fuels, primarily due to potent methane leaks. Therefore, operational emissions – especially methane in the gas sector – is critical for pinpointing where producers can make direct cuts at the source.
+### Conclusion:
+This analysis confirms historical emissions are concentrated among top oil, coal, and gas producers (including state-owned, investor-owned, and nation-state attributions). While the data mainly links climate impact to the end-use of these fuels (Scope 3), Natural Gas operations show a distinct profile with a proportionally larger share of potent fugitive methane emissions (as CO2e), suggesting methane management is an important factor for direct mitigation efforts by producers in that sector.
