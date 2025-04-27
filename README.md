@@ -1,6 +1,8 @@
 # Carbon Majors EDA
+The goal of this analysis was to investigate the historical emissions data attributed to major global producers (from Carbon Majors).
 
 ### The Big Picture: Historical Trend
+The data show an accelerating increase globally since the mid-20 century, reflecting increased fossil fuel production and use.
 
 ```python
 # Global Emissions Trend (1862 - 2023)
@@ -18,6 +20,7 @@ plt.show()
 ![1](https://github.com/user-attachments/assets/860a97cb-46f9-4bb0-a103-10e5cd2bd8bf)
 
 ### Major Historical Contributors
+A majority of historical emissions (~80%) are linked to a small number of major entities (State-Owned, Investor-Owned, and Nation-State producers) and are dominated by three core commodities: Oil & NGL, Coal (especially Bituminous), and Natural Gas.
 
 ```python
 total_emissions_overall = df['total_emissions_MtCO2e'].sum()
@@ -81,6 +84,7 @@ plt.show()
 ![4](https://github.com/user-attachments/assets/42853143-3a2c-425e-8e24-7c1837271e99)
 
 ### Understanding the data (Record counts)
+Individual data entries exhibit highly skewed distributions – most records show low-to-moderate emissions, but infrequent records associated with extremely high emissions (outliers) exist across all categories.
 
 ```python
 record_counts = df.groupby(['commodity', 'production_unit']).size().unstack(fill_value=0)
@@ -100,6 +104,8 @@ plt.show()
 ![5](https://github.com/user-attachments/assets/d4f15f0c-ceda-4b54-85a1-42e0c93e829d)
 
 ### Distribution Insights (Emissions Records)
+It represent significantly larger and more variable emissions compared to company-level records, often linked to historical, aggregated coal production.
+
 ```python
 df['decade'] = (df['year'] // 10) * 10 # Ensure 'decade' column exists
 
@@ -164,6 +170,8 @@ plt.show()
 ![8](https://github.com/user-attachments/assets/6f00fe62-713e-4c13-9987-008a89ba7df0)
 
 ### Investigating Specifci Observation (Records > 1500 MtCO2)
+Findings indicate that historical Bituminous Coal production attributed at the national level is a primary driver of these exceptionally high-emission records.
+
 ```python
 df_nation_state = df[df['parent_type'] == 'Nation State'].copy() # Use .copy() to avoid SettingWithCopyWarning if you modify later
 
@@ -200,6 +208,7 @@ Metallurgical Coal     1
 ![9](https://github.com/user-attachments/assets/6409d741-da8f-4a1c-8f44-6ad41bbd45ef)
 
 ### Emission Composition: Operational vs Product Use & Methane Focus
+Natural Gas uniquely stands out with a much higher proportion of its total attributed footprint coming from operational (Scope 1) emissions compared to oil or coal. This strongly points to the significant climate impact of fugitive methane leaks (reported as MtCO2e) within its production and supply chain.
 
 ```python
 # Violin Chart
@@ -292,6 +301,7 @@ plt.show()
 ![13](https://github.com/user-attachments/assets/e9d21d35-61c3-4977-b8cb-14805d1dedf0)
 
 ### Trends of key Players Over Time
+These charts illustrate how the contributions of the top commodities have potentially shifted over time and track the specific historical emission trajectories of the largest individual entities.
 
 ```python
 total_emissions_by_entity = df.groupby('parent_entity')['total_emissions_MtCO2e'].sum()
@@ -336,3 +346,5 @@ plt.show()
 ```
 ![15](https://github.com/user-attachments/assets/9dd0098b-d50d-4300-b75f-35830cadb0fc)
 
+# Conclusion:
+This analysis confirms historical emissions are concentrated among top oil, coal, and gas producers (including state-owned, investor-owned, and nation-state attributions). While the data mainly links climate impact to the end-use of these fuels (Scope 3), Natural Gas stands out: its direct operational footprint (Scope 1) is proportionally much larger than other fuels, primarily due to potent methane leaks. Therefore, operational emissions – especially methane in the gas sector – is critical for pinpointing where producers can make direct cuts at the source.
